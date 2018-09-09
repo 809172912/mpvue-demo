@@ -11,7 +11,10 @@ Component({
     externalClasses: ['i-class'],
 
     data: {
-        ...default_data
+        visible: false,
+        content: '',
+        duration: 2,
+        type: 'default'
     },
 
     methods: {
@@ -19,9 +22,9 @@ Component({
             const { type = 'default', duration = 2 } = options;
 
             this.setData({
-                ...options,
-                type,
-                duration,
+                content: options.content,
+                type: options.type ? options.type : 'default',
+                duration: options.duration ? options.duration : 2,
                 visible: true
             });
 
@@ -38,7 +41,10 @@ Component({
 
         handleHide () {
             this.setData({
-                ...default_data
+                visible: false,
+                content: '',
+                duration: 2,
+                type: 'default'
             });
         }
     }
