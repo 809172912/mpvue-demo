@@ -35,15 +35,45 @@
                 <switch slot="footer" checked />
             </i-cell>
         </i-cell-group>
+        <i-button type="default" @click="toastHandle()">测试toast组件</i-button>
+        <i-button type="default" @click="messageHandle()">测试message组件</i-button>
+        <i-toast id="toast" />
+        <i-message id="message" />
     </div>
 </template>
 
 <script>
+    import { $Toast, $Message } from "../../../static/iview/base/index";
     export default {
         data () {
             return {};
         },
+        mounted () {
+            wx.login({
+                success: function (res) {
+                    if (res.code) {
+                        console.log(res);
+                    } else {
+                        console.log("获取用户登录态失败！" + res.errMsg);
+                    }
+                }
+            });
+        },
         methods: {
+            messageHandle () {
+                $Message({
+                    content: "测试message组件",
+                    type: "success",
+                    selector: "#message"
+                });
+            },
+            toastHandle () {
+                $Toast({
+                    content: "测试toast组件",
+                    type: "success",
+                    selector: "#toast"
+                });
+            }
         }
     };
 </script>
