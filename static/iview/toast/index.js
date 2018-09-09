@@ -14,7 +14,13 @@ Component({
     externalClasses: ['i-class'],
 
     data: {
-        ...default_data
+        visible: false,
+        content: '',
+        icon: '',
+        image: '',
+        duration: 2,
+        mask: true,
+        type: 'default'
     },
 
     methods: {
@@ -22,9 +28,12 @@ Component({
             const { type = 'default', duration = 2 } = options;
 
             this.setData({
-                ...options,
-                type,
-                duration,
+                type: options.type ? options.type : 'default',
+                duration: options.duration ? options.duration : 2,
+                content: options.content ? options.content : '',
+                icon: options.icon ? options.icon : '',
+                image: options.image ? options.image : '',
+                mask: !!options.mask,
                 visible: true
             });
 
@@ -41,7 +50,13 @@ Component({
 
         handleHide () {
             this.setData({
-                ...default_data
+                visible: false,
+                content: '',
+                icon: '',
+                image: '',
+                duration: 2,
+                mask: true,
+                type: 'default'
             });
         }
     }
